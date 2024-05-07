@@ -33,7 +33,8 @@ function playRound(humanChoice, computerChoice) {
         document.querySelector(".round-output")
             .textContent = "You win! " + humanChoice + " beats " + computerChoice;
         document.querySelector(".player-score")
-            .textContent = "Your Score: " + (humanScore++)
+            .textContent = "Your Score: " + (++humanScore)
+        console.log(humanScore)
         detectWinner(humanScore, computerScore);
         return;
     }
@@ -43,61 +44,37 @@ function playRound(humanChoice, computerChoice) {
         document.querySelector(".round-output")
             .textContent = "You lose! " + computerChoice + " beats " + humanChoice;
         document.querySelector(".computer-score")
-            .textContent = "Computer Score: " + (computerScore++)
+            .textContent = "Computer Score: " + (++computerScore)
         detectWinner(humanScore, computerScore);
         return;
     }
 
 }
 
-function detectWinner(humanCurrentScore, computerCurrentScore) {
+function detectWinner() {
 
-    if (humanCurrentScore === 5) {
+    if (humanScore === 5) {
         document.querySelector(".scores").appendChild(document.createElement("div"))
         .textContent = "You have won the game!";
         humanScore = 0;
         computerScore = 0;
+        document.querySelector(".player-score").textContent = "Your Score: " + (humanScore)
+        document.querySelector(".computer-score").textContent = "Computer Score: " + (computerScore)
+
     }
 
-    if (computerCurrentScore === 5) {
+    if (computerScore === 5) {
         document.querySelector(".scores").appendChild(document.createElement("div"))
-        .textContent = "You have lost the game!";
+            .textContent = "You have lost the game!";
         humanScore = 0;
         computerScore = 0;
+        document.querySelector(".player-score").textContent = "Your Score: " + humanScore;
+        document.querySelector(".computer-score").textContent = "Computer Score: " + computerScore;
     }
 
+    return;
 
 }
-
-/* function playGame() {
-
-    for (let i = 0; i < 5; i++) {
-
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-    
-        playRound(humanSelection, computerSelection)
-
-        console.log("Your Score: " + humanScore)
-        console.log("Computer Score: " + computerScore)
-
-    }
-
-    if (humanScore === computerScore) {
-        console.log("You both finished with the same score, there is no winner!")
-        return;
-    }
-
-    if (humanScore > computerScore) {
-        console.log("You have won the game!")
-    }
-
-    else {
-        console.log("You have lost the game!")
-    }
-
-} */
-
 
 document.querySelector("#button-rock").addEventListener("click", () => {
     playRound("rock", getComputerChoice());
