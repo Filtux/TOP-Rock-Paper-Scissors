@@ -15,32 +15,12 @@ function getComputerChoice()  {
     }
 }
 
-function getHumanChoice() {
-
-    let humanChoice;
-
-    while (true) {
-
-        humanChoice = prompt("Select 'rock', 'paper', or 'scissors'").toLowerCase();
-
-        if (humanChoice === 'rock' || humanChoice === 'paper' || humanChoice === 'scissors') {
-            break;
-        }
-        
-        else {
-            alert ("Choice is invalid, select 'rock', 'paper', or 'scissors'")
-        }
- 
-    }
-
-    return humanChoice;
-    
-}
-
 function playRound(humanChoice, computerChoice) {
 
     if (humanChoice === computerChoice) {
         console.log("It's a tie!")
+        document.querySelector(".round-output")
+            .textContent = "It's a tie!";
         return;
     }
 
@@ -50,15 +30,42 @@ function playRound(humanChoice, computerChoice) {
     (humanChoice === "scissors" && computerChoice === "paper")
     ) {
         console.log("You win! " + humanChoice + " beats " + computerChoice)
-        humanScore ++;
+        document.querySelector(".round-output")
+            .textContent = "You win! " + humanChoice + " beats " + computerChoice;
+        document.querySelector(".player-score")
+            .textContent = "Your Score: " + (humanScore++)
+        detectWinner(humanScore, computerScore);
         return;
     }
 
     else {
         console.log(("You lose! " + computerChoice + " beats " + humanChoice))
-        computerScore ++;
+        document.querySelector(".round-output")
+            .textContent = "You lose! " + computerChoice + " beats " + humanChoice;
+        document.querySelector(".computer-score")
+            .textContent = "Computer Score: " + (computerScore++)
+        detectWinner(humanScore, computerScore);
         return;
     }
+
+}
+
+function detectWinner(humanCurrentScore, computerCurrentScore) {
+
+    if (humanCurrentScore === 5) {
+        document.querySelector(".scores").appendChild(document.createElement("div"))
+        .textContent = "You have won the game!";
+        humanScore = 0;
+        computerScore = 0;
+    }
+
+    if (computerCurrentScore === 5) {
+        document.querySelector(".scores").appendChild(document.createElement("div"))
+        .textContent = "You have lost the game!";
+        humanScore = 0;
+        computerScore = 0;
+    }
+
 
 }
 
