@@ -62,7 +62,7 @@ function playRound(humanChoice, computerChoice) {
 
 }
 
-function playGame() {
+/* function playGame() {
 
     for (let i = 0; i < 5; i++) {
 
@@ -89,8 +89,17 @@ function playGame() {
         console.log("You have lost the game!")
     }
 
-}
-
-playGame()
+} */
 
 
+document.querySelector("#button-rock").addEventListener("click", () => {
+    playRound("rock", getComputerChoice());
+});
+
+document.querySelector("#button-paper").addEventListener("click", () => {
+    playRound("paper", getComputerChoice());
+});
+
+document.querySelector("#button-scissors").addEventListener("click", () => {
+    playRound("scissors", getComputerChoice());
+});
